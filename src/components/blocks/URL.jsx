@@ -1,5 +1,9 @@
 import axios from 'axios';
+import copy from 'copy-to-clipboard';
+import Image from 'next/image';
 import { useRef, useState} from 'react';
+
+
 const Url = () => {
     const biturl = 'https://api-ssl.bitly.com/v4/shorten';
     const data = useRef(null)
@@ -8,17 +12,23 @@ const Url = () => {
 
     function Submitlink(e) {
         e.preventDefault()
+
         axios.post(biturl, {
             long_url : data.current.value
         }, { headers: {
-                'Authorization' : 'Bearer cdc15d4ecb72ebee341b651c0ddfe77dc7b686f4'
+                'Authorization' : `Bearer ${process.env.NEXT_PUBLIC_APIKEY}`
             }
         }).then((res) => {
-            setNewLink(res.data?.link)
+            setNewLink(res.data.link)
 
         }).catch((err) => {
             console.log(err)
         })
+
+    }
+    function copyclipboard(e) {
+        e.preventDefault();
+        copy(newLink)
 
     }
     console.log(newLink)
@@ -28,7 +38,14 @@ const Url = () => {
                 <input type="text" ref={data}/>
                 <button onClick={Submitlink}>Submit</button>
             </form>
-            {newLink}
+            <div>
+                <p >
+                    {newLink}
+                </p>
+                <button onClick={copyclipboard}>
+                    <Image src='/copy.png' width={100} height={100}/>
+                </button>
+            </div>
         </div>
     )
 }
