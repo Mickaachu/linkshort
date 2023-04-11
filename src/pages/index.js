@@ -2,9 +2,9 @@ import Url from "@/components/blocks/URL";
 
 const Home = () => {
   return(
-    <div>
+    <main>
       <Url/>
-    </div>
+    </main>
   )
 }
 export default Home; 

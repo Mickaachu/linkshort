@@ -43,7 +43,7 @@ const Url = () => {
                     {newLink}
                 </p>
                 <button onClick={copyclipboard}>
-                    <Image src='/copy.png' width={100} height={100}/>
+                    <Image src='/copy.png' width={30} height={30}/>
                 </button>
             </div>
         </div>
