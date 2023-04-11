@@ -2,7 +2,7 @@ import axios from 'axios';
 import copy from 'copy-to-clipboard';
 import Image from 'next/image';
 import { useRef, useState} from 'react';
-
+import style from '../../styles/Home.module.css';
 
 const Url = () => {
     const biturl = 'https://api-ssl.bitly.com/v4/shorten';
